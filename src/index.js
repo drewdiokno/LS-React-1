@@ -16,6 +16,7 @@ class App extends Component {
         };
         this.handleTodo = this.handleTodo.bind(this);
         this.submitTodo = this.submitTodo.bind(this);
+        this.markCompleted = this.markCompleted.bind(this);
     }
 
     handleTodo(event) {
@@ -26,8 +27,18 @@ class App extends Component {
 
     submitTodo() {
       const todoList = this.state.todoList;
-      todoList.push(this.state.todo);
+      const newTodo = {name: this.state.todo, completed: false};
+      todoList.push(newTodo);
       this.setState({todoList});
+      console.log(this.state.todoList);
+    }
+
+    markCompleted(key) {
+     const todoList = this.state.todoList;
+     console.log(this.state.todoList);
+     if (!todoList[key].completed) {
+        todoList[key].completed = true;
+     }
     }
 
     render() {
@@ -35,7 +46,7 @@ class App extends Component {
         <div>
           <AddTodo todo={this.state.todo} handleTodo={this.handleTodo}/><br />
           <SubmitTodo submitTodo={this.submitTodo}/><br />
-          <DisplayList todoList={this.state.todoList}/>
+          <DisplayList todoList={this.state.todoList} onClick={this.markCompleted(key)}/*markCompleted={this.markCompleted} *//>
         </div>
       );
     }

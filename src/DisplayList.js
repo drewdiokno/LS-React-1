@@ -1,15 +1,18 @@
 import React from 'react';
 
-const DisplayList = (prop) => {
+const DisplayList = (props) => {
+
+
   return (
     <ul>
-      {prop.todoList.map((todo) => {
-          return <li>{todo}</li>
+      {props.todoList.map((todo, key) => {
+          return <li key = {key}></li>
       })}
     </ul>
   );
-};
 
+ 
+};
 
 
 export default DisplayList;
